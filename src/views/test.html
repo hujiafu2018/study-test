@@ -1,0 +1,46 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2023-10-20 15:34:25
+ * @Description: 
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+/***深拷贝***/
+const isObject = (obj) => typeof obj === 'object' && obj !== null;
+const deepClone = (value) => {
+  if (!isObject(value)) return value;
+  let newResult = Array.isArray(value) ? [] : {};
+  for (const key in value) {
+    if (Object.prototype.hasOwnProperty.call(value, key)) {
+      newResult[key] = isObject(value[key]) ? deepClone(value[key]) : value[key];
+    }
+  }
+  return newResult;
+}
+  
+// 两数之和
+const twoSum = (arr, target) => {
+  if (!Array.isArray(arr)) return [];
+  const map = {};
+  for (let i = 0; i < arr.length; i++) {
+    // 如果当前map里面的key有对应的值
+    if (map[target - arr[i]]) {
+      return [target - arr[i], arr[i]];
+    } else {
+      map[arr[i]] = i;
+    }
+  }
+}
+
+</script>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 1. 两数之和
+
+function twoNumAdd(arr, target) {
+  // 时间复杂度O(n)、 空间复杂度O(n)
+  if (Array.isArray(arr)) {
+    // 使用map将遍历过的数字存起来，空间换时间
+    let map = {};
+    // debugger;
+    for (let i = 0; i <= arr.length; i++) {
+      // 从map中查找是否有key 等于 target-nums[i]，如果有，则条件成立，返回结果
+      if (map[target - arr[i]] !== undefined) {
+        // 该数在数组中对应的数组对应的值
+        // return [target - arr[i], arr[i]];
+        // 该数在数组中对应的下标
+        return [map[target - arr[i]], i];
+      } else {
+        // 条件不成立，将该值存起来
+        map[arr[i]] = i;
+      }
+    }
+  }
+  // 暴力解法，时间复杂度O(n²)，空间复杂度O(n²)
+  // return [];
+    // let result = [];
+    // for(var i=0;i<arr.length;i++){
+    //   for(var j = i+1;j<arr.length;j++){
+    //     if(arr[j] === target - arr[i]){
+    //       const newArr=[];
+    //       newArr.push(i);
+    //       newArr.push(j);
+    //       result.push({
+    //         index: [newArr],
+    //         value: [arr[i], arr[j]]
+    //       });
+    //     }
+    //   }
+    // };
+    // return result;
+}
+console.log(twoNumAdd([1,2,3,4,5,6,7,8], 11));
+</script>
+</html>
