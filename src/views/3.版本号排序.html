@@ -1,0 +1,42 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2024-01-09 14:46:46
+ * @Description: 
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+// 1、版本号排序
+// 题目： 输入一组版本号，输出从大到小的排序
+// 输入： ['2.1.0.1', '0.402.1', '10.2.1', '5.1.2', '1.0.4.5']
+// 输出： ['10.2.1', '5.1.2', '2.1.0.1', '1.0.4.5', '0.402.1']
+const versionSort = (arr) => {
+  if (!arr) return [];
+  return arr.sort((a, b) => {
+    const prev = a.split('.');
+    const next = b.split('.');
+    let i = 0;
+    while (true) {
+      const res1 = prev[i];
+      const res2 = next[i];
+      i++;
+      if (res1 === undefined || res2 === undefined) {
+        return next.length - prev.length;
+      }
+      if (res1 === res2) continue;
+      return res2- res1;
+    }
+  })
+}
+console.log(versionSort(['2.1.0.1', '0.402.1', '10.2.1', '5.1.2', '1.0.4.5']))
+</script>
+</html>
