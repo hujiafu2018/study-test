@@ -1,0 +1,94 @@
+<!--
+* @Author: Mr.Hu
+* @Date: 2022-07-22 16:30:23
+* @Description: XXX页面
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+ <div class="index-page">
+  <input id="input" type="text" value="">
+  <div id="text"></div>
+ </div>
+ </html>
+<script>
+  const proxy = ((obj, prop) => {
+    // 数据劫持
+    Object.defineProperties(obj, prop, {
+      get: () => {
+        return obj[prop];
+      },
+      set: (value) => {
+        if (value !== obj[prop]) {
+          obj[prop] = value;
+        }
+      }
+    });
+  })
+  // 代理模式-vue3
+  function reactive(obj) {
+    return new Proxy(obj, {
+      get(target, prop) {
+        console.log('触发get');
+        return target[prop];
+      },
+      set(target, prop, val) {
+        console.log('触发set');
+        target[prop] = val;
+      }
+    })
+  }
+  const student = {
+    name: '张三',
+    man: {
+      age: 18
+    },
+    woman: {
+      age: 19
+    },
+    kids: {
+      a: {
+        age: 1
+      },
+      b: 8
+    },
+  }
+  const obj = reactive(student);
+  obj.man;
+  student.man;
+  obj.name = '李四';
+</script>
+<style lang="scss" scoped>
+@mixin _flex_vertical {
+ display: flex;
+ align-items: center;
+}
+
+
+@mixin _flex_column {
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+}
+
+
+@mixin _flex_vertical_level {
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+
+@mixin _flex_level_between {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+</style>
+
+

@@ -1,0 +1,36 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2024-03-15 11:29:37
+ * @Description: 手写实现一个call
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  Function.prototype.myCall = (context, ...arg) => {
+    if (typeof context != "function") {
+      console.error('请传入函数');
+      return;
+    }
+    const fn = Symbol('key');
+    // 判断 context 是否传入，如果没有传就设置为全局对象
+    context = context || globalThis;
+    // 将被调用的方法设置为当前上下文对象的属性，即this
+    context[fn] = this;
+    // 执行要被调用的方法
+    const result = context[fn](...arg);
+    // 删除新增属性
+    delete context[fn];
+    // 返回要执行结果
+    return result;
+  }
+</script>
+</html>

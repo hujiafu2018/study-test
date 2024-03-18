@@ -1,0 +1,50 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2024-01-15 14:33:34
+ * @Description: 
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">搜索</button>
+</body>
+<script>
+  let btn = document.getElementById('btn');
+  function send(e){
+      console.log('提交了');
+  }
+  btn.addEventListener('click', throttle(send, 1000));
+  // 第一种，利用时间戳
+  function throttle(func, delay) {
+    let previous = new Date();
+    return function() {
+      const context = this;
+      const arg = arguments;
+      if (Date.now() - previous > delay) {
+        func.call(this, arg);
+        previous = Date.now();
+      }
+    }
+  }
+  // 第二种，setimeout
+  function throttle(func, delay) {
+    let timer;
+    return function() {
+      const context = this;
+      const arg = arguments;
+      if (!timer) {
+        timer = setTimeout(()=> {
+          timer = null;
+          func.apply(context, arg);
+        }, delay);
+      }
+    }
+  }
+</script>
+</html>

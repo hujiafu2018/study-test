@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="btn">提交</button>
+</body>
+</html>
+<script>
+  function send(){
+      console.log('我们好棒鸭！');
+  }
+  const btn = document.getElementById("btn");
+  btn.addEventListener("click", debunce(send, 1500, true)) //给btn按钮绑定点击监听事件
+  // 手写防抖
+ function debunce(func, wait, immediate) {
+  var timer;
+  return function ()  {
+    const context = this;
+    var args = arguments;
+    if (timer) clearTimeout(timer);
+    if (immediate) {
+      // 如果已经执行过，不再执行
+      var callNow = !timer;
+      timer = setTimeout(function() {
+        timer = null;
+      }, wait);
+      if (callNow) func.apply(context, args)
+    } else {
+      timer = setTimeout(function() {
+        func.apply(context, args);
+      }, wait);
+    }
+  }
+ }
+</script>
+</html>

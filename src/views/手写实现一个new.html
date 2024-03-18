@@ -1,0 +1,25 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2024-03-15 11:41:54
+ * @Description: 
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  Function.prototype.myNew = (context) => {
+    const obj = new Object();
+    obj._proto_ = context.prototype;
+    const res = context.call(obj, ...argument);
+    return typeof res == "object" ? res : obj; 
+  }
+</script>
+</html>

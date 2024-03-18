@@ -1,0 +1,48 @@
+<!--
+ * @Author: Mr.Hu
+ * @Date: 2024-01-11 14:25:00
+ * @Description: 
+ * @LastEditors: Mr.Hu
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+<script>
+  // 观察者
+  class Subject {
+    constructor(name) {
+      this.name = name;
+    }
+    update() {
+      console.log('update');
+    }
+  }
+  // 被观察者/订阅者
+  class Observer {
+    constructor() {
+      this.observers = [];
+    }
+    addObserver(observer) {
+      this.observers.push(observer);
+    }
+  }
+  // 主题对象
+  class Deep {
+    notify(observer) {
+      this.observer.update();
+    }
+  }
+  const obs = new observer();
+  obs.addObserver('ob1');
+  const pub1 = new pub();
+  const dep = new deep();
+  dep1.notify(obs);
+</script>
+</html>
